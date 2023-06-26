@@ -28,12 +28,11 @@ function LoginForm() {
 
         if(response.status === 200) {
             setCurrentUser(data.user)
+            localStorage.setItem('token', data.token)
             history.push('/')
         } else {
             setErrorMessage(data.message)
         }
-    
-        console.log(data)
     }
 
     return (
