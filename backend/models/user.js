@@ -5,9 +5,14 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
 
+    canAddPlace() {
+      return this.role !== 'admin'
+    }
+
     static associate({ Comment }) {
       User.hasMany(Comment, { as: 'author', foreignKey: 'author_id' })
     }
+
 
   };
   User.init({

@@ -5,7 +5,7 @@ const jwt = require('json-web-token')
 const { Place, Comment, User } = db
 
 router.post('/', async (req, res) => {
-    if(req.currentUser?.role !== 'admin') {
+    if(req.currentUser?.canAddPlace()) {
         return res.status(403).json({ message: 'You are not allowed to add a place'})
     }
 
@@ -50,7 +50,7 @@ router.get('/:placeId', async (req, res) => {
 })
 
 router.put('/:placeId', async (req, res) => {
-    if(req.currentUser?.role !== 'admin') {
+    if(req.currentUser?.canAddPlace()) {
         return res.status(403).json({ message: 'You are not allowed to add a place'})
     }
 
@@ -72,7 +72,7 @@ router.put('/:placeId', async (req, res) => {
 })
 
 router.delete('/:placeId', async (req, res) => {
-    if(req.currentUser?.role !== 'admin') {
+    if(req.currentUser?.canAddPlace()) {
         return res.status(403).json({ message: 'You are not allowed to add a place'})
     }
     
